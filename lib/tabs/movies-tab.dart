@@ -1,28 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_rxdart_example/blocs/movie-bloc.dart';
 
-import 'models/movie.dart';
+import '../models/movie.dart';
 
-class Example extends StatelessWidget {
-  final String title;
-  const Example({Key? key, required this.title}) : super(key: key);
+class MoviesTab extends StatelessWidget {
+  const MoviesTab({
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     bloc.fetchAllMovies();
-    return Scaffold(
-        appBar: AppBar(title: Text(title)),
-        body: StreamBuilder(
-          stream: bloc.allMovies,
-          builder: ((context, snapshot) {
-            if (snapshot.hasData) {
-              return movieList(snapshot);
-            } else if (snapshot.hasError) {
-              return Text(snapshot.error.toString());
-            }
-            return const Center(child: CircularProgressIndicator());
-          }),
-        ));
+    return StreamBuilder(
+      stream: bloc.allMovies,
+      builder: ((context, snapshot) {
+        if (snapshot.hasData) {
+          return movieList(snapshot);
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        return const Center(child: CircularProgressIndicator());
+      }),
+    );
   }
 }
 

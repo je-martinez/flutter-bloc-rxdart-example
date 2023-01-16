@@ -15,7 +15,7 @@ class ApiMovieResponse {
   });
 
   int? page;
-  List<Result?>? results;
+  List<Movie?>? results;
   int? totalPages;
   int? totalResults;
 
@@ -24,8 +24,7 @@ class ApiMovieResponse {
         page: json["page"],
         results: json["results"] == null
             ? []
-            : List<Result?>.from(
-                json["results"]!.map((x) => Result.fromJson(x))),
+            : List<Movie?>.from(json["results"]!.map((x) => Movie.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
@@ -40,8 +39,8 @@ class ApiMovieResponse {
       };
 }
 
-class Result {
-  Result({
+class Movie {
+  Movie({
     this.adult,
     this.backdropPath,
     this.genreIds,
@@ -73,7 +72,7 @@ class Result {
   double? voteAverage;
   int? voteCount;
 
-  factory Result.fromJson(Map<String, dynamic> json) => Result(
+  factory Movie.fromJson(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"],
         genreIds: json["genre_ids"] == null

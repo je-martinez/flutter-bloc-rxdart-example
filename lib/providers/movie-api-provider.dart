@@ -10,7 +10,6 @@ class MovieApiProvider {
   Future<ApiMovieResponse> fetchMovieList() async {
     final response = await client.get(Uri.parse(
         "http://api.themoviedb.org/3/movie/popular?api_key=$_apiKey"));
-    print(response.body.toString());
     if (response.statusCode == 200) {
       return ApiMovieResponse.fromJson(json.decode(response.body));
     } else {
