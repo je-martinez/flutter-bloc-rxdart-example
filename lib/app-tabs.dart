@@ -29,7 +29,7 @@ class _AppTabsState extends State<AppTabs> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("RxDart Example App")),
-      body: _widgetOptions.elementAt(_selectedIndex),
+      body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
