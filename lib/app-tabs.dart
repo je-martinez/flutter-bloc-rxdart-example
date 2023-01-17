@@ -1,3 +1,4 @@
+import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_rxdart_example/tabs/movies-tab.dart';
 
@@ -45,34 +46,51 @@ class _AppTabsState extends State<AppTabs> {
   Widget build(BuildContext context) {
     bloc.fetchAllMovies();
     return Scaffold(
-      appBar: AppBar(
-        title: Text(_titlesTab[_selectedIndex]),
-        backgroundColor: _colorsTab[_selectedIndex],
+      appBar: _navigationAppBar(
+        _titlesTab[_selectedIndex],
+        _colorsTab[_selectedIndex],
       ),
       body: Center(child: _widgetOptions.elementAt(_selectedIndex)),
-      bottomNavigationBar: BottomNavigationBar(
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.movie_filter),
-              label: "Movies",
-              backgroundColor: _colorsTab[0]),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.newspaper),
-              label: "Posts",
-              backgroundColor: _colorsTab[1]),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.people_sharp),
-              label: "Users",
-              backgroundColor: _colorsTab[2]),
-          BottomNavigationBarItem(
-              icon: const Icon(Icons.comment),
-              label: "Comments",
-              backgroundColor: _colorsTab[3]),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.white,
-        onTap: _onItemTapped,
-      ),
+      bottomNavigationBar:
+          _normalNavigationBar(_colorsTab, _selectedIndex, _onItemTapped),
     );
   }
+}
+
+AppBar _navigationAppBar(String title, Color color) {
+  return AppBar(
+    title: Text(title),
+    backgroundColor: color,
+  );
+}
+
+BottomNavigationBar _normalNavigationBar(List<Color> colorsTab,
+    int selectedIndex, Function(int value) onItemTapped) {
+  return BottomNavigationBar(
+    items: _normalTabsBar(colorsTab),
+    currentIndex: selectedIndex,
+    selectedItemColor: Colors.white,
+    onTap: onItemTapped,
+  );
+}
+
+List<BottomNavigationBarItem> _normalTabsBar(List<Color> colorsTab) {
+  return <BottomNavigationBarItem>[
+    BottomNavigationBarItem(
+        icon: const Icon(Icons.movie_filter),
+        label: "Movies",
+        backgroundColor: colorsTab[0]),
+    BottomNavigationBarItem(
+        icon: const Icon(Icons.newspaper),
+        label: "Posts",
+        backgroundColor: colorsTab[1]),
+    BottomNavigationBarItem(
+        icon: const Icon(Icons.people_sharp),
+        label: "Users",
+        backgroundColor: colorsTab[2]),
+    BottomNavigationBarItem(
+        icon: const Icon(Icons.comment),
+        label: "Comments",
+        backgroundColor: colorsTab[3]),
+  ];
 }
