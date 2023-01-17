@@ -10,12 +10,11 @@ class MoviesTab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAllMovies();
     return StreamBuilder(
       stream: bloc.allMovies,
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
-          return movieList(snapshot);
+          return _movieList(snapshot);
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
         }
@@ -25,7 +24,7 @@ class MoviesTab extends StatelessWidget {
   }
 }
 
-Widget movieList(AsyncSnapshot<ApiMovieResponse> snapshot) {
+Widget _movieList(AsyncSnapshot<ApiMovieResponse> snapshot) {
   return GridView.builder(
       itemCount: snapshot.data!.results!.length,
       gridDelegate:
