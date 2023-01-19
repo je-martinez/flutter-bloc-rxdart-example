@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_rxdart_example/tabs/movies_tab.dart';
+import 'package:flutter_bloc_rxdart_example/tabs/posts_tab.dart';
 import 'blocs/movie.bloc.dart';
+import 'blocs/post.bloc.dart';
 
 class AppTabs extends StatefulWidget {
   const AppTabs({super.key});
@@ -15,7 +17,7 @@ class _AppTabsState extends State<AppTabs> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     MoviesTab(),
-    Text('Index 1 Tab', style: optionStyle),
+    PostsTab(),
     Text('Index 2 Tab', style: optionStyle),
     Text('Index 3 Tab', style: optionStyle),
   ];
@@ -43,6 +45,7 @@ class _AppTabsState extends State<AppTabs> {
   @override
   Widget build(BuildContext context) {
     moviesBloc.fetchAllMovies();
+    postBloc.fetchAllPost();
     return Scaffold(
       appBar: _navigationAppBar(
         _titlesTab[_selectedIndex],
