@@ -1,4 +1,3 @@
-import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc_rxdart_example/tabs/movies_tab.dart';
 import 'blocs/movie.bloc.dart';
