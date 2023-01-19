@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_rxdart_example/tabs/movies-tab.dart';
-
 import 'app-tabs.dart';
 
 void main() {

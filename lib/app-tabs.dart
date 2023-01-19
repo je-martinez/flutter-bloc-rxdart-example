@@ -1,8 +1,7 @@
 import 'package:flashy_tab_bar2/flashy_tab_bar2.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_rxdart_example/tabs/movies-tab.dart';
-
-import 'blocs/movie-bloc.dart';
+import 'package:flutter_bloc_rxdart_example/tabs/movies_tab.dart';
+import 'blocs/movie.bloc.dart';
 
 class AppTabs extends StatefulWidget {
   const AppTabs({super.key});
@@ -44,7 +43,7 @@ class _AppTabsState extends State<AppTabs> {
 
   @override
   Widget build(BuildContext context) {
-    bloc.fetchAllMovies();
+    moviesBloc.fetchAllMovies();
     return Scaffold(
       appBar: _navigationAppBar(
         _titlesTab[_selectedIndex],

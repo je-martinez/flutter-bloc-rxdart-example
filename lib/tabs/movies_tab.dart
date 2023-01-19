@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc_rxdart_example/blocs/movie-bloc.dart';
+import 'package:flutter_bloc_rxdart_example/blocs/movie.bloc.dart';
 
 import '../models/movie.dart';
 
@@ -11,7 +11,7 @@ class MoviesTab extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder(
-      stream: bloc.allMovies,
+      stream: moviesBloc.allMovies,
       builder: ((context, snapshot) {
         if (snapshot.hasData) {
           return _movieList(snapshot);
